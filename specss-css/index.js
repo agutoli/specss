@@ -5,12 +5,11 @@ const mkdirp = require('mkdirp')
 
 class CssSpecssPlugin {
   constructor(specssInstance, options = {}) {
-    console.log(options);
     this.specss = specssInstance
     this.priorities = ['fonts', 'colors', 'sizes']
-    this.beforeExecute = this._beforeExecute.bind(this)
     this.execute = this._execute.bind(this)
     this.afterExecute = this._afterExecute.bind(this)
+    this.outputCss = []
   }
 
   async loadTemplate(specType, variables) {
@@ -22,11 +21,7 @@ class CssSpecssPlugin {
   }
 
   async _afterExecute() {
-    this.specss.logger("Finish");
-  }
-
-  async _beforeExecute() {
-    this.specss.logger("Compiling...");
+    return this.saveCssFile(this.outputCss.join(''))
   }
 
   async _execute() {
@@ -43,15 +38,13 @@ class CssSpecssPlugin {
       if (footer) footer_outputs.push(footer)
     }
 
-    const cssText = [
+    this.outputCss = [
       header_outputs.join(''),
       '\n:root {\n',
       body_outputs.join(''),
       '}\n',
       footer_outputs.join(''),
-    ].join('')
-
-    return this.saveCssFile(cssText)
+    ]
   }
 
   saveCssFile(outputs) {

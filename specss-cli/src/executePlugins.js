@@ -5,7 +5,8 @@ const defaultPlugins = [
   '@specss/css'
 ]
 
-function hookLogger(plugin, hookStage) {
+function hookLogger(plugin, hookStage, loaded) {
+  if (!loaded[hookStage]) return
   return (instance) => {
     console.log(' -> ', clc.green(hookStage) + clc.yellow(':') + clc.cyan('hook'))
   }
@@ -14,11 +15,11 @@ function hookLogger(plugin, hookStage) {
 function executeSequence(plugin, loadedPlugin) {
   console.log('\n' + clc.bold(`${plugin}`))
   return Promise.resolve()
-    .then(hookLogger(plugin, 'beforeExecute'))
+    .then(hookLogger(plugin, 'beforeExecute', loadedPlugin))
     .then(loadedPlugin.beforeExecute)
-    .then(hookLogger(plugin, 'execute'))
+    .then(hookLogger(plugin, 'execute', loadedPlugin))
     .then(loadedPlugin.execute)
-    .then(hookLogger(plugin, 'afterExecute'))
+    .then(hookLogger(plugin, 'afterExecute', loadedPlugin))
     .then(loadedPlugin.afterExecute)
 }
 
