@@ -1,9 +1,9 @@
-domain: scup
+domain: mycompany
 
 plugins:
   - "@specss/docs"
 
 global:
-  cssVarsPrefix: '--scup'
+  cssVarsPrefix: '--mycompany'
   specsFolder: "./design"
   outputFolder: './dist'

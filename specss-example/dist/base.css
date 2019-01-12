@@ -2,17 +2,17 @@
 @import "https://fonts.googleapis.com/css?family=Open+Sans";
 
 :root {
-  --scup-font-roboto: Roboto;
-  --scup-font-open-sans: 'Open Sans', sans-serif;
-  --scup-color-primary-blue: #3CA0F0;
-  --scup-color-primary-royal: #0A78DC;
-  --scup-color-gray-light100: #F5F5FA;
-  --scup-color-gray-light200: #E6E6EE;
-  --scup-color-social-facebook: #0A78DC;
-  --scup-color-social-twitter: #3CA0F0;
-  --scup-size-typograph-tiny: 10px;
-  --scup-size-typograph-small: 12px;
-  --scup-size-typograph-medium: 14px;
-  --scup-size-typograph-large: 24px;
-  --scup-size-typograph-huge: 56px;
+  --mycompany-font-roboto: Roboto;
+  --mycompany-font-open-sans: 'Open Sans', sans-serif;
+  --mycompany-color-primary-blue: #3CA0F0;
+  --mycompany-color-primary-royal: #0A78DC;
+  --mycompany-color-gray-light100: #F5F5FA;
+  --mycompany-color-gray-light200: #E6E6EE;
+  --mycompany-color-social-facebook: #0A78DC;
+  --mycompany-color-social-twitter: #3CA0F0;
+  --mycompany-size-typograph-tiny: 10px;
+  --mycompany-size-typograph-small: 12px;
+  --mycompany-size-typograph-medium: 14px;
+  --mycompany-size-typograph-large: 24px;
+  --mycompany-size-typograph-huge: 56px;
 }
