@@ -8,7 +8,7 @@ class Specks {
   }
 
   logger(msg) {
-    console.log(clc.white('  -  ' + msg))
+    console.log(clc.white('  .  ' + msg))
   }
 }
 

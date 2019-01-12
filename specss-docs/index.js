@@ -1,5 +1,4 @@
-
-class SpecssDocsPlugin {
+class DocsSpecssPlugin {
   constructor(specssInstance, options) {
     this.specss = specssInstance
     this.beforeExecute = this._beforeExecute.bind(this)
@@ -12,11 +11,12 @@ class SpecssDocsPlugin {
   }
 
   async _beforeExecute() {
-    // console.log(this.specss.configs.plugins);
+
   }
 
   async _execute() {
+    console.log(this.specss.configs.plugins);
   }
 }
 
-module.exports = SpecssDocsPlugin
+module.exports = DocsSpecssPlugin

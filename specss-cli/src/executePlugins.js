@@ -23,17 +23,20 @@ function executeSequence(plugin, loadedPlugin) {
     .then(loadedPlugin.afterExecute)
 }
 
-module.exports = async (specssInstance) => {
-  for(let plugin of defaultPlugins) {
-    const options = ((specssInstance.configs.plugins||{}).options||{})[plugin] || {}
-    const ImportedPlugin = require(plugin)
-    const loadedPlugin = new ImportedPlugin(specssInstance, options)
-    await executeSequence(plugin, loadedPlugin)
-  }
+async function loadPluginModule(pathname, plugin, specssInstance) {
+  const options = ((specssInstance.configs.plugins||{}).options||{})[plugin] || {}
+  const ImportedPlugin = require(pathname)
+  const loadedPlugin = new ImportedPlugin(specssInstance, options)
+  await executeSequence(plugin, loadedPlugin)
+}
 
+module.exports = async (specssInstance) => {
+  // internals/native plugins
+  for(let plugin of defaultPlugins) {
+    await loadPluginModule(plugin, plugin, specssInstance)
+  }
+  // externals/custom plugins
   for(let plugin of (specssInstance.configs.plugins.packages || [])) {
-    const options = ((specssInstance.configs.plugins||{}).options||{})[plugin] || {}
-    const loadedPlugin = new require(path.join(process.env.PWD, 'node_modules', plugin))(specssInstance, options)
-    await executeSequence(plugin, loadedPlugin)
+    await loadPluginModule(path.join(process.env.PWD, 'node_modules', plugin), plugin, specssInstance)
   }
 }
