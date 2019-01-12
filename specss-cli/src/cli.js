@@ -22,7 +22,6 @@
   const specIdentities = loadSpecs(configs)
 
   const specss = new Specss({ specIdentities, configs, args })
-
   if (!configs) {
     return
   }

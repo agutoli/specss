@@ -4,7 +4,8 @@ const path = require('path')
 const mkdirp = require('mkdirp')
 
 class CssSpecssPlugin {
-  constructor(specssInstance) {
+  constructor(specssInstance, options = {}) {
+    console.log(options);
     this.specss = specssInstance
     this.priorities = ['fonts', 'colors', 'sizes']
     this.beforeExecute = this._beforeExecute.bind(this)
@@ -69,6 +70,4 @@ class CssSpecssPlugin {
   }
 }
 
-module.exports = (specssInstance) => {
-  return new CssSpecssPlugin(specssInstance)
-}
+module.exports = CssSpecssPlugin

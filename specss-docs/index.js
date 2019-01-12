@@ -1,6 +1,6 @@
 
 class SpecssDocsPlugin {
-  constructor(specssInstance) {
+  constructor(specssInstance, options) {
     this.specss = specssInstance
     this.beforeExecute = this._beforeExecute.bind(this)
     this.execute = this._execute.bind(this)
@@ -19,6 +19,4 @@ class SpecssDocsPlugin {
   }
 }
 
-module.exports = (specssInstance) => {
-  return new SpecssDocsPlugin(specssInstance)
-}
+module.exports = SpecssDocsPlugin

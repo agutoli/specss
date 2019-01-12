@@ -7,7 +7,6 @@ module.exports = () => {
   try {
     return yaml.safeLoad(fs.readFileSync(path.join(process.env.PWD, '.specss.yml'), 'utf8'));
   } catch (e) {
-    console.log(e);
     console.log(clc.red('Ops! Can not find .specss.yml file!'))
   }
 }

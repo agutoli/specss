@@ -24,12 +24,15 @@ function executeSequence(plugin, loadedPlugin) {
 
 module.exports = async (specssInstance) => {
   for(let plugin of defaultPlugins) {
-    const loadedPlugin = require(plugin)(specssInstance)
+    const options = ((specssInstance.configs.plugins||{}).options||{})[plugin] || {}
+    const ImportedPlugin = require(plugin)
+    const loadedPlugin = new ImportedPlugin(specssInstance, options)
     await executeSequence(plugin, loadedPlugin)
   }
 
-  for(let plugin of (specssInstance.configs.plugins || [])) {
-    const loadedPlugin = require(path.join(process.env.PWD, 'node_modules', plugin))(specssInstance)
+  for(let plugin of (specssInstance.configs.plugins.packages || [])) {
+    const options = ((specssInstance.configs.plugins||{}).options||{})[plugin] || {}
+    const loadedPlugin = new require(path.join(process.env.PWD, 'node_modules', plugin))(specssInstance, options)
     await executeSequence(plugin, loadedPlugin)
   }
 }

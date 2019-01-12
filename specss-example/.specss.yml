@@ -1,9 +1,13 @@
 domain: mycompany
 
 plugins:
-  - "@specss/docs"
+  options:
+    "@specss/css":
+      themesFolder: "./design/themes"
+  packages:
+    - "@specss/docs"
 
 global:
-  cssVarsPrefix: '--mycompany'
+  cssVarsPrefix: "--mycompany"
   specsFolder: "./design"
-  outputFolder: './dist'
+  outputFolder: "./dist"
