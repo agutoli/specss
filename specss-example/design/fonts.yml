@@ -1,0 +1,8 @@
+fonts:
+  - font-family: "Roboto"
+    url: "https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400"
+    alias: "roboto"
+
+  - font-family: "'Open Sans', sans-serif"
+    url: "https://fonts.googleapis.com/css?family=Open+Sans"
+    alias: "open-sans"

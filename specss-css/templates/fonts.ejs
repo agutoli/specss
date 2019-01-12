@@ -1,0 +1,3 @@
+<% for (let spec of fonts) { -%>
+  <%- cssVarsPrefix %>-font-<%- spec.alias %>: <%- renderVarValue(spec['font-family']) %>;
+<% } -%>

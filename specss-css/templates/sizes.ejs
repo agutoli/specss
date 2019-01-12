@@ -1,0 +1,7 @@
+<% for (let ns in specItem) { -%>
+<% for (let group in specItem[ns]) { -%>
+<% for (let propname in specItem[ns][group]) { -%>
+  <%- cssVarsPrefix %>-size-<%- group %>-<%- propname %>: <%- renderVarValue(specItem[ns][group][propname]) %>;
+<% } -%>
+<% } -%>
+<% } -%>

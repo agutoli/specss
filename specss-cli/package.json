@@ -1,0 +1,21 @@
+{
+  "name": "@specss/cli",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "bin": {
+    "specss": "./src/cli.js"
+  },
+  "scripts": {
+    "publish": "npm publish --access=public",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@specss/css": "^1.0.0",
+    "argparse": "^1.0.10",
+    "cli-color": "^1.4.0",
+    "js-yaml": "^3.12.0"
+  }
+}

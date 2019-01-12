@@ -1,0 +1,7 @@
+sizes:
+  typograph:
+    tiny: 10px
+    small: 12px
+    medium: 14px
+    large: 24px
+    huge: 56px

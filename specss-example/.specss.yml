@@ -1,0 +1,9 @@
+domain: scup
+
+plugins:
+  - "@specss/docs"
+
+global:
+  cssVarsPrefix: '--scup'
+  specsFolder: "./design"
+  outputFolder: './dist'
