@@ -2,17 +2,17 @@
 @import "https://fonts.googleapis.com/css?family=Open+Sans";
 
 :root {
-  --mycompany-font-roboto: Roboto;
-  --mycompany-font-open-sans: 'Open Sans', sans-serif;
-  --mycompany-color-primary-blue: #3CA0F0;
-  --mycompany-color-primary-royal: #0A78DC;
-  --mycompany-color-gray-light100: #F5F5FA;
-  --mycompany-color-gray-light200: #E6E6EE;
-  --mycompany-color-social-facebook: #0A78DC;
-  --mycompany-color-social-twitter: #3CA0F0;
-  --mycompany-size-typograph-tiny: 10px;
-  --mycompany-size-typograph-small: 12px;
-  --mycompany-size-typograph-medium: 14px;
-  --mycompany-size-typograph-large: 24px;
-  --mycompany-size-typograph-huge: 56px;
+  --rotor-font-roboto: Roboto;
+  --rotor-font-open-sans: 'Open Sans', sans-serif;
+  --rotor-color-primary-blue: #3CA0F0;
+  --rotor-color-primary-royal: #0A78DC;
+  --rotor-color-gray-light100: #F5F5FA;
+  --rotor-color-gray-light200: #E6E6EE;
+  --rotor-color-social-facebook: #0A78DC;
+  --rotor-color-social-twitter: #3CA0F0;
+  --rotor-size-typograph-tiny: 10px;
+  --rotor-size-typograph-small: 12px;
+  --rotor-size-typograph-medium: 14px;
+  --rotor-size-typograph-large: 24px;
+  --rotor-size-typograph-huge: 56px;
 }

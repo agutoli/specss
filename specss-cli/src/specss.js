@@ -8,6 +8,7 @@ class Specks {
   }
 
   logger(msg) {
+    if (!this.args.verbose) return;
     console.log(clc.white('  .  ' + msg))
   }
 }

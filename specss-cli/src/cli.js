@@ -1,4 +1,7 @@
 #!/usr/bin/env node
+const path = require('path');
+const { version } = require(path.resolve(path.join(__dirname, '../package.json')));
+
 !function () {
   const { ArgumentParser } = require('argparse')
 
@@ -8,12 +11,16 @@
   const executePlugins = require('./executePlugins')
 
   const parser = new ArgumentParser({
-    version: '0.0.1',
+    version,
     addHelp: true,
-    description: 'Argparse example'
+    description: 'Specss cli too'
   })
 
-  parser.addArgument([ '-f', '--foo' ], { help: 'foo bar' })
+  parser.addArgument([ '-vv', '--verbose' ], {
+    action: 'storeTrue',
+    help: 'Verbose mode'
+  });
+
   parser.addArgument([ '-b', '--bar' ], { help: 'bar foo' })
   parser.addArgument('--baz', { help: 'baz bar' })
 

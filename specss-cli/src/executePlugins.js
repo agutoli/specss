@@ -5,38 +5,46 @@ const defaultPlugins = [
   '@specss/css'
 ]
 
-function hookLogger(plugin, hookStage, loaded) {
-  if (!loaded[hookStage]) return
+const defaultHooks = {
+  'execute': Promise.resolve,
+  'after:execute': Promise.resolve,
+  'before:execute': Promise.resolve,
+}
+
+function hookLogger(plugin, hookStage, loadedPlugin) {
+  if (!loadedPlugin.specss.args.verbose) return;
+  if (!loadedPlugin[hookStage]) return
   return (instance) => {
     console.log(' -> ', clc.green(hookStage) + clc.yellow(':') + clc.cyan('hook'))
   }
 }
 
 function executeSequence(plugin, loadedPlugin) {
-  console.log('\n' + clc.bold(`${plugin}`))
+  console.log(clc.bold(` -- ${plugin}`))
+  const hooks = { ...defaultHooks, ...loadedPlugin.hooks };
   return Promise.resolve()
-    .then(hookLogger(plugin, 'beforeExecute', loadedPlugin))
-    .then(loadedPlugin.beforeExecute)
+    .then(hookLogger(plugin, 'before:execute', loadedPlugin))
+    .then(hooks.beforeExecute)
     .then(hookLogger(plugin, 'execute', loadedPlugin))
-    .then(loadedPlugin.execute)
-    .then(hookLogger(plugin, 'afterExecute', loadedPlugin))
-    .then(loadedPlugin.afterExecute)
+    .then(hooks.execute)
+    .then(hookLogger(plugin, 'after:execute', loadedPlugin))
+    .then(hooks.afterExecute)
 }
 
-async function loadPluginModule(pathname, plugin, specssInstance) {
-  const options = ((specssInstance.configs.plugins||{}).options||{})[plugin] || {}
+async function loadPluginModule(pathname, plugin, specss) {
+  const options = ((specss.configs.plugins||{}).options||{})[plugin] || {}
   const ImportedPlugin = require(pathname)
-  const loadedPlugin = new ImportedPlugin(specssInstance, options)
+  const loadedPlugin = new ImportedPlugin(specss, options)
   await executeSequence(plugin, loadedPlugin)
 }
 
-module.exports = async (specssInstance) => {
+module.exports = async (specss) => {
   // internals/native plugins
   for(let plugin of defaultPlugins) {
-    await loadPluginModule(plugin, plugin, specssInstance)
+    await loadPluginModule(plugin, plugin, specss)
   }
   // externals/custom plugins
-  for(let plugin of (specssInstance.configs.plugins.packages || [])) {
-    await loadPluginModule(path.join(process.env.PWD, 'node_modules', plugin), plugin, specssInstance)
+  for(let plugin of (specss.configs.plugins.packages || [])) {
+    await loadPluginModule(path.join(process.env.PWD, 'node_modules', plugin), plugin, specss)
   }
 }

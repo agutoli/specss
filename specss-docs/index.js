@@ -1,21 +1,28 @@
+const BbPromise = require('bluebird');
+
 class DocsSpecssPlugin {
-  constructor(specssInstance, options) {
-    this.specss = specssInstance
-    this.beforeExecute = this._beforeExecute.bind(this)
-    this.execute = this._execute.bind(this)
-    this.afterExecute = this._afterExecute.bind(this)
+  constructor(specss, options) {
+    this.specss = specss
+    this.hooks = {
+      'after:execute': BbPromise.bind(this)
+        .then(this.afterExecute),
+      'execute': BbPromise.bind(this)
+        .then(this.execute),
+      'before:execute': BbPromise.bind(this)
+        .then(this.beforeExecute)
+    }
   }
 
-  async _afterExecute() {
-
+  async execute() {
+    // console.log('execute: ', this.specss.args);
   }
 
-  async _beforeExecute() {
-
+  async afterExecute() {
+    // console.log('after:execute: ', this.specss.args);
   }
 
-  async _execute() {
-    console.log(this.specss.configs.plugins);
+  async beforeExecute() {
+    // console.log('before:execute: ', this.specss.args);
   }
 }
 

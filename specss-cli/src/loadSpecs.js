@@ -19,7 +19,7 @@ module.exports = (configs) => {
 
   const specsFolder = path.resolve(configs.global.specsFolder)
   const files = fs.readdirSync(specsFolder)
-  console.log(clc.green('Loading!'))
+
   const specsLoaded = []
   files.forEach((file) => {
     const filename = path.join(specsFolder, file)

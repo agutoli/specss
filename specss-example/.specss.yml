@@ -4,10 +4,12 @@ plugins:
   options:
     "@specss/css":
       themesFolder: "./design/themes"
+    "@specss/docs":
+      foo: bar
   packages:
     - "@specss/docs"
 
 global:
-  cssVarsPrefix: "--mycompany"
+  cssVarsPrefix: "--rotor"
   specsFolder: "./design"
   outputFolder: "./dist"
