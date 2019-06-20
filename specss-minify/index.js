@@ -1,3 +1,4 @@
+const fs = require('fs');
 const BbPromise = require('bluebird');
 
 class MinifySpecssPlugin {
@@ -14,7 +15,17 @@ class MinifySpecssPlugin {
   }
 
   async execute() {
+    const { base } = this.specss.streams
+
+    base.read.on('data', (chunk) => {
+      console.log(chunk.toString());
+    })
+
+    // const r = fs.createReadStream(this.specss.streams.base.path)
+    // r.pipe(this.specss.streams.base)
+
     // console.log('execute: ', this.specss.args);
+    return Promise.resolve();
   }
 
   async afterExecute() {

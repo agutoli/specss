@@ -5,7 +5,7 @@ plugins:
     "@specss/css":
       themesFolder: "./design/themes"
   packages:
-    - "@specss/docs"
+  #   - "@specss/docs"
     - "@specss/minify"
 
 global:

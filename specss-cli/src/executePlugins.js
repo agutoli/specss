@@ -41,16 +41,16 @@ async function loadPluginModule(pathname, plugin, specss) {
 }
 
 module.exports = async (specss) => {
-  specss.startStreams();
-
   // internals/native plugins
   for(const plugin of defaultPlugins) {
+    specss.startStreams();
     await loadPluginModule(plugin, plugin, specss);
+    specss.endStreams();
   }
   // externals/custom plugins
   for(const plugin of (specss.configs.plugins.packages || [])) {
+    specss.startStreams();
     await loadPluginModule(path.join(process.env.PWD, 'node_modules', plugin), plugin, specss);
+    specss.endStreams();
   }
-  specss.endStreams();
-
 }

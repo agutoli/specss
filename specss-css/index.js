@@ -50,32 +50,11 @@ class CssSpecssPlugin {
       '}\n',
       footer_outputs.join(''),
     ]
-
-    return new Promise((resolve) => {
-      setTimeout(() => {
-        resolve()
-      }, 3000)
-    })
   }
 
   renderVarValue(value) {
     return value
   }
-
-  // saveCssFile(outputs) {
-  //   return new Promise((resolve, reject) => {
-  //     const outputFolder = path.join(process.env.PWD, this.specss.configs.global.outputFolder);
-  //     mkdirp(outputFolder, (err) => {
-  //       if (err) {
-  //         return reject(err)
-  //       }
-  //       const filename = path.join(outputFolder, 'base.css')
-  //       this.specss.logger(`File ${filename} created!`);
-  //       fs.writeFileSync(filename, outputs)
-  //       resolve()
-  //     });
-  //   })
-  // }
 }
 
 module.exports = CssSpecssPlugin
