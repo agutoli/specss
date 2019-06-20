@@ -28,7 +28,8 @@ const { version } = require(path.resolve(path.join(__dirname, '../package.json')
   const configs = loadConfig()
   const specIdentities = loadSpecs(configs)
 
-  const specss = new Specss({ specIdentities, configs, args })
+  const specss = new Specss({ specIdentities, configs, args });
+
   if (!configs) {
     return
   }
