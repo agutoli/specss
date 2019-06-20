@@ -40,11 +40,11 @@ async function loadPluginModule(pathname, plugin, specss) {
 
 module.exports = async (specss) => {
   // internals/native plugins
-  for(let plugin of defaultPlugins) {
+  for(const plugin of defaultPlugins) {
     await loadPluginModule(plugin, plugin, specss)
   }
   // externals/custom plugins
-  for(let plugin of (specss.configs.plugins.packages || [])) {
+  for(const plugin of (specss.configs.plugins.packages || [])) {
     await loadPluginModule(path.join(process.env.PWD, 'node_modules', plugin), plugin, specss)
   }
 }

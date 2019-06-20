@@ -4,10 +4,9 @@ plugins:
   options:
     "@specss/css":
       themesFolder: "./design/themes"
-    "@specss/docs":
-      foo: bar
   packages:
     - "@specss/docs"
+    - "@specss/minify"
 
 global:
   cssVarsPrefix: "--rotor"
