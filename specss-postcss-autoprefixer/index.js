@@ -1,8 +1,9 @@
 const fs = require('fs');
 const BbPromise = require('bluebird');
-const csso = require('csso');
+const autoprefixer = require('autoprefixer')
+const postcss = require('postcss')
 
-class MinifySpecssPlugin {
+class AutoprefixerSpecssPlugin {
   constructor(specss, options) {
     this.specss = specss
     this.hooks = {
@@ -18,10 +19,28 @@ class MinifySpecssPlugin {
   async execute() {
     const { base } = this.specss.streams
 
+
+    const text = `
+    ::placeholder {
+      color: gray;
+    }
+
+    .image {
+      background-image: url(image@1x.png);
+    }
+    @media (min-resolution: 2dppx) {
+      .image {
+        background-image: url(image@2x.png);
+      }
+    }
+    `
     base.read.on('data', (chunk) => {
-      const result = csso.minify(chunk.toString());
-      base.write(result.css);
-    })
+      postcss([ autoprefixer ]).process(chunk.toString()).then(result => {
+        result.warnings().forEach(warn => {
+          base.write(warn.toString());
+        });
+      });
+    });
 
     return Promise.resolve();
   }
@@ -35,4 +54,4 @@ class MinifySpecssPlugin {
   }
 }
 
-module.exports = MinifySpecssPlugin
+module.exports = AutoprefixerSpecssPlugin
