@@ -1,0 +1,18 @@
+@import "https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400";
+@import "https://fonts.googleapis.com/css?family=Open+Sans";
+
+:root {
+  --rt-font-roboto: Roboto;
+  --rt-font-open-sans: 'Open Sans', sans-serif;
+  --rt-color-primary-blue: #3CA0F0;
+  --rt-color-primary-royal: #0A78DC;
+  --rt-color-gray-light100: #F5F5FA;
+  --rt-color-gray-light200: #E6E6EE;
+  --rt-color-social-facebook: #0A78DC;
+  --rt-color-social-twitter: #3CA0F0;
+  --rt-size-typograph-tiny: 10px;
+  --rt-size-typograph-small: 12px;
+  --rt-size-typograph-medium: 14px;
+  --rt-size-typograph-large: 24px;
+  --rt-size-typograph-huge: 56px;
+}

@@ -19,21 +19,6 @@ class AutoprefixerSpecssPlugin {
   async execute() {
     const { base } = this.specss.streams
 
-
-    const text = `
-    ::placeholder {
-      color: gray;
-    }
-
-    .image {
-      background-image: url(image@1x.png);
-    }
-    @media (min-resolution: 2dppx) {
-      .image {
-        background-image: url(image@2x.png);
-      }
-    }
-    `
     base.read.on('data', (chunk) => {
       postcss([ autoprefixer ]).process(chunk.toString()).then(result => {
         result.warnings().forEach(warn => {

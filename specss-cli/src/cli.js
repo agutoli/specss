@@ -34,5 +34,5 @@ const { version } = require(path.resolve(path.join(__dirname, '../package.json')
     return
   }
 
-  executePlugins(specss)
+  specss.init(executePlugins)
 }()

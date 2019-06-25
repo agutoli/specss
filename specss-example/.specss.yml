@@ -1,15 +1,15 @@
-domain: mycompany
+domain: agutoli
 
 plugins:
   options:
     "@specss/css":
-      themesFolder: "./design/themes"
-  packages:
+      themesFolder: "./ui/themes"
+  # packages:
   #   - "@specss/docs"
-    - "@specss/minify"
-    - "@specss/autoprefixer"
+    # - "@specss/minify"
+    # - "@specss/postcss-autoprefixer"
 
 global:
-  cssVarsPrefix: "--rotor"
-  specsFolder: "./design"
+  cssVarsPrefix: "--rt"
+  specsFolder: "./ui"
   outputFolder: "./dist"

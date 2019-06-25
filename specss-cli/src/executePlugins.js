@@ -2,7 +2,8 @@ const path = require('path')
 const clc = require("cli-color")
 
 const defaultPlugins = [
-  '@specss/css'
+  '@specss/css',
+  '@specss/postcss-autoprefixer'
 ]
 
 const defaultHooks = {

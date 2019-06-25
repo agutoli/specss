@@ -1,6 +1,7 @@
 const fs = require('fs');
 const clc = require("cli-color");
 const path = require('path');
+const mkdirp = require('mkdirp');
 const FileStream = require('./fileStream');
 
 class Specks {
@@ -11,30 +12,37 @@ class Specks {
 
     const { outputFolder } = configs.global;
     this.distFolder = path.join(process.cwd(), outputFolder, '/');
-
-    this.init();
   }
 
-  init() {
+  async init(executePlugins) {
     const { domain } = this.configs;
     this.files = {
-      base: this.touchFile(`${domain}.css`)
+      base: await this.touchFile(`${domain}.css`)
     };
+
     this.streams = {};
+
+    // execute all plugins
+    executePlugins(this);
   }
 
-  touchFile(file) {
+  async touchFile(file) {
     const { domain } = this.configs;
     const filePath = path.join(this.distFolder, file);
 
-    fs.closeSync(fs.openSync(filePath, 'w'));
-
-    return filePath;
+    return new Promise((resolve, reject) => {
+      mkdirp(this.distFolder, (err) => {
+        if (err) {
+          return reject(err);
+        }
+        fs.closeSync(fs.openSync(filePath, 'w'));
+        resolve(filePath);
+      });
+    })
   }
 
   startStreams() {
     const { domain } = this.configs;
-
     for(const file in this.files) {
       this.streams[file] = new FileStream(this.files[file])
     }

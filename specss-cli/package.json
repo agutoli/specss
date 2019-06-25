@@ -13,9 +13,11 @@
   "license": "ISC",
   "dependencies": {
     "@specss/css": "^1.0.0",
+    "@specss/postcss-autoprefixer": "1.0.0",
     "argparse": "^1.0.10",
     "cli-color": "^1.4.0",
     "js-yaml": "^3.12.0",
+    "mkdirp": "^0.5.1",
     "ora": "^3.4.0",
     "vinyl-fs": "^3.0.3"
   }
