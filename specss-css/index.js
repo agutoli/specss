@@ -2,7 +2,6 @@ const fs = require('fs');
 const ejs = require('ejs');
 const path = require('path');
 const mkdirp = require('mkdirp');
-const yaml = require('js-yaml');
 const YAML = require('yaml')
 
 class CssSpecssPlugin {
@@ -49,7 +48,6 @@ class CssSpecssPlugin {
   async beforeExecute() {
     // start streams
     this.baseFile = await this.specss.startStream('base.css');
-
   }
 
   async afterExecute() {
@@ -61,13 +59,16 @@ class CssSpecssPlugin {
     const body_outputs = []
     const footer_outputs = []
 
+    let globalSpecs = {};
     for (let specType of this.types) {
       this.specss.logger(`Processing: ${specType}`);
       const executeStrategy = require(`./strategies/${specType}.js`);
-      const { header, body, footer } = await executeStrategy(this, specType, this.specss.specIdentities.find(x => x[specType]))
+      const specs = this.specss.specIdentities.find(x => x[specType]);
+      const { header, body, footer } = await executeStrategy(this, specType, specs);
       if (header) header_outputs.push(header);
       if (body) body_outputs.push(body);
       if (footer) footer_outputs.push(footer);
+      Object.assign(globalSpecs, specs);
     }
 
     this.outputCss = [
@@ -85,7 +86,7 @@ class CssSpecssPlugin {
       this.specss.logger(`Processing: Theme ${theme}`);
       const executeThemeStrategy = require(`./strategies/theme.js`);
       const specs = await this.loadSpecsByTheme(theme);
-      const { header, body, footer } = await executeThemeStrategy(this, theme, specs);
+      const { header, body, footer } = await executeThemeStrategy(this, theme, specs, globalSpecs);
       this.themeFile.write(body);
     }
   }

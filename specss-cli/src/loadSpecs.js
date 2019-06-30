@@ -1,11 +1,11 @@
 const fs = require('fs')
 const path = require('path')
-const yaml = require('js-yaml')
+const YAML = require('yaml')
 const clc = require("cli-color")
 
 function loadSpecFile(filename) {
   try {
-    return yaml.safeLoad(fs.readFileSync(filename, 'utf8'));
+    return YAML.parse(fs.readFileSync(filename, 'utf8'));
   } catch (e) {
     console.log(clc.red(`SyntaxError: Can not parse ${filename} file!`, e))
     return null

@@ -1,5 +1,7 @@
 btn:
   types:
+    default__font-family: @spec(fonts.roboto.font-family)
     default__align-items: center
-    default__background-color: @spec(colors.primary.white)
-    primary__color: spec(colors.primary.white)
+    default__background-color: @spec(colors.primary.blue)
+    default__box-shadow--focus: 0 0 4px 1px @opacity(@spec(colors.primary.royal))
+    primary__color: @spec(colors.social.facebook)

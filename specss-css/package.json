@@ -11,6 +11,8 @@
   "dependencies": {
     "bluebird": "^3.5.5",
     "ejs": "^2.6.1",
+    "hex-rgb": "^4.1.0",
+    "lodash.get": "^4.4.2",
     "mkdirp": "^0.5.1",
     "yaml": "^1.6.0"
   }
