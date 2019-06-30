@@ -1,27 +1,4 @@
-
-.org-twitter__avatar {
-  --myprefix-avatar-default__border-radius: 100%;
-  --myprefix-avatar-tiny__width: 24px;
-  --myprefix-avatar-tiny__height: 24px;
-  --myprefix-avatar-tiny__bottom: -6px;
-  --myprefix-avatar-tiny__right: -6px;
-  --myprefix-avatar-small__width: 32px;
-  --myprefix-avatar-small__height: 32px;
-  --myprefix-avatar-small__bottom: -6px;
-  --myprefix-avatar-small__right: -6px;
-  --myprefix-avatar-medium__width: 48px;
-  --myprefix-avatar-medium__height: 48px;
-  --myprefix-avatar-medium__bottom: -2px;
-  --myprefix-avatar-medium__right: -2px;
-  --myprefix-avatar-large__width: 80px;
-  --myprefix-avatar-large__height: 80px;
-  --myprefix-avatar-large__bottom: 0px;
-  --myprefix-avatar-large__right: 7px;
-  --myprefix-avatar-huge__width: 96px;
-  --myprefix-avatar-huge__height: 96px;
-  --myprefix-avatar-huge__bottom: 1px;
-  --myprefix-avatar-huge__right: 9px;
-}
+.org-twitter__avatar{--myprefix-avatar-default__border-radius: 100%;--myprefix-avatar-tiny__width: 24px;--myprefix-avatar-tiny__height: 24px;--myprefix-avatar-tiny__bottom: -6px;--myprefix-avatar-tiny__right: -6px;--myprefix-avatar-small__width: 32px;--myprefix-avatar-small__height: 32px;--myprefix-avatar-small__bottom: -6px;--myprefix-avatar-small__right: -6px;--myprefix-avatar-medium__width: 48px;--myprefix-avatar-medium__height: 48px;--myprefix-avatar-medium__bottom: -2px;--myprefix-avatar-medium__right: -2px;--myprefix-avatar-large__width: 80px;--myprefix-avatar-large__height: 80px;--myprefix-avatar-large__bottom: 0px;--myprefix-avatar-large__right: 7px;--myprefix-avatar-huge__width: 96px;--myprefix-avatar-huge__height: 96px;--myprefix-avatar-huge__bottom: 1px;--myprefix-avatar-huge__right: 9px}.org-twitter__typograph{--myprefix-typograph-tiny__font-size: 10px}
 
 .org-twitter__typograph {
   --myprefix-typograph-tiny__font-size: 10px;

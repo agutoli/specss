@@ -3,7 +3,7 @@ const clc = require("cli-color")
 
 const defaultPlugins = [
   '@specss/css',
-  // '@specss/postcss-autoprefixer'
+  '@specss/minify'
 ]
 
 const defaultHooks = {
