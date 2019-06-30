@@ -46,8 +46,8 @@ class CssSpecssPlugin {
   }
 
   async beforeExecute() {
-    // start streams
-    this.baseFile = await this.specss.startStream('base.css');
+    const { domain } = this.specss.configs;
+    this.baseFile = await this.specss.startStream(`${domain}.css`);
   }
 
   async afterExecute() {
