@@ -10,7 +10,7 @@ class Specks {
   constructor({ configs, args }) {
     this.args = args
     this.configs = configs
-    this.streams = {};
+    this.pluginStreams = [];
     this.specIdentities = loadSpecs(configs);
   }
 
@@ -27,7 +27,9 @@ class Specks {
     return new Promise((resolve, reject) => {
       mkdirp(streamDir, (err) => {
         if (err) return reject(err);
-        resolve(new FileStream(streamFile));
+        const stream = new FileStream(streamFile);
+        this.pluginStreams.push(stream);
+        resolve(stream);
       })
     })
   }
