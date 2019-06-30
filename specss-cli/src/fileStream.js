@@ -3,15 +3,14 @@ const path = require('path');
 
 class FileStream {
   constructor(filePath) {
-    this.filePath = filePath;
-    this.read = fs.createReadStream(filePath);
+    this.writeStream = fs.createWriteStream(filePath);
+    this.readStream = fs.createReadStream(filePath);
   }
 
   write(text) {
-    const w = fs.createWriteStream(this.filePath);
-    w.write(text)
-    this.read.pipe(w);
-    w.end()
+    this.writeStream.write(text);
+    this.readStream.pipe(this.writeStream);
+    this.writeStream.end()
   }
 }
 

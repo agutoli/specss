@@ -7,7 +7,6 @@ const { version } = require(path.resolve(path.join(__dirname, '../package.json')
 
   const Specss = require('./specss')
   const loadConfig = require('./loadConfig')
-  const loadSpecs = require('./loadSpecs')
   const executePlugins = require('./executePlugins')
 
   const parser = new ArgumentParser({
@@ -26,9 +25,8 @@ const { version } = require(path.resolve(path.join(__dirname, '../package.json')
 
   const args = parser.parseArgs()
   const configs = loadConfig()
-  const specIdentities = loadSpecs(configs)
 
-  const specss = new Specss({ specIdentities, configs, args });
+  const specss = new Specss({ configs, args });
 
   if (!configs) {
     return

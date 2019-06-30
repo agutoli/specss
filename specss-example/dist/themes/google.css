@@ -1,0 +1,7 @@
+
+.org-google__btn {
+  --myprefix-btn-default__align-items: center;
+  --myprefix-btn-default__background-color: @spec(colors.primary.white);
+  --myprefix-btn-primary__color: spec(colors.primary.white);
+}
+

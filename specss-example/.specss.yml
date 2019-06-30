@@ -1,4 +1,4 @@
-domain: agutoli
+domain: org
 
 plugins:
   options:
@@ -10,6 +10,6 @@ plugins:
     # - "@specss/postcss-autoprefixer"
 
 global:
-  cssVarsPrefix: "--rt"
+  cssVarsPrefix: "--myprefix"
   specsFolder: "./ui"
   outputFolder: "./dist"

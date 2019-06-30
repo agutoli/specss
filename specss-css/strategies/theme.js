@@ -4,6 +4,7 @@ const path = require('path')
 
 function parseSpecs (specs) {
   return specs.reduce((stored, current) => {
+    if (!current) return stored;
     const section = Object.keys(current)[0];
     const values = Object.values(current[section])[0];
     stored.push({

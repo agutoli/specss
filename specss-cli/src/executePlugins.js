@@ -3,7 +3,7 @@ const clc = require("cli-color")
 
 const defaultPlugins = [
   '@specss/css',
-  '@specss/postcss-autoprefixer'
+  // '@specss/postcss-autoprefixer'
 ]
 
 const defaultHooks = {
@@ -44,14 +44,14 @@ async function loadPluginModule(pathname, plugin, specss) {
 module.exports = async (specss) => {
   // internals/native plugins
   for(const plugin of defaultPlugins) {
-    specss.startStreams();
-    await loadPluginModule(plugin, plugin, specss);
-    specss.endStreams();
+    try {
+      await loadPluginModule(plugin, plugin, specss);
+    } catch(e) {
+      console.log(e);
+    }
   }
   // externals/custom plugins
   for(const plugin of (specss.configs.plugins.packages || [])) {
-    specss.startStreams();
     await loadPluginModule(path.join(process.env.PWD, 'node_modules', plugin), plugin, specss);
-    specss.endStreams();
   }
 }

@@ -2,8 +2,8 @@ const fs = require('fs');
 const ejs = require('ejs');
 const path = require('path');
 const mkdirp = require('mkdirp');
-const BbPromise = require('bluebird');
 const yaml = require('js-yaml');
+const YAML = require('yaml')
 
 class CssSpecssPlugin {
   constructor(specss, options = {}) {
@@ -13,12 +13,9 @@ class CssSpecssPlugin {
     this.outputCss = [];
 
     this.hooks = {
-      'before:execute': () => BbPromise.bind(this)
-        .then(() => this.beforeExecute()),
-      'execute': () => BbPromise.bind(this)
-        .then(() => this.execute()),
-      'after:execute': () => BbPromise.bind(this)
-        .then(() => this.afterExecute())
+      'before:execute': () => this.beforeExecute(),
+      'execute': () => this.execute(),
+      'after:execute': () => this.afterExecute()
     }
   }
 
@@ -34,37 +31,29 @@ class CssSpecssPlugin {
     }
   }
 
-  async loadThemeSpecByName(theme, name) {
-    const themePath = path.join(this.options.themesFolder, theme);
-    try {
-      return yaml.safeLoad(fs.readFileSync(path.join(themePath, name)));
-    } catch(e) {
-      return null;
-    }
-  }
-
   async loadSpecsByTheme(theme) {
     const themePath = path.join(this.options.themesFolder, theme);
     const items = [];
     try {
       const specs = fs.readdirSync(themePath);
       for(let specName of specs) {
-        items.push(await this.loadThemeSpecByName(theme, specName));
+        items.push(await this.specss.loadSpecFile(path.join(themePath, specName)));
       }
       return items;
     } catch(e) {
+      this.specss.error(e);
       return items;
     }
   }
 
   async beforeExecute() {
+    // start streams
+    this.baseFile = await this.specss.startStream('base.css');
 
   }
 
   async afterExecute() {
-    const { base } = this.specss.streams
-    base.write(this.outputCss.join(''));
-    return Promise.resolve();
+    await this.baseFile.write(this.outputCss.join(''));
   }
 
   async execute() {
@@ -92,13 +81,12 @@ class CssSpecssPlugin {
     const themes = await this.discoverThemes();
 
     for (let theme of themes) {
+      this.themeFile = await this.specss.startStream(`themes/${theme}.css`);
       this.specss.logger(`Processing: Theme ${theme}`);
       const executeThemeStrategy = require(`./strategies/theme.js`);
       const specs = await this.loadSpecsByTheme(theme);
       const { header, body, footer } = await executeThemeStrategy(this, theme, specs);
-      console.log(body);
-      // this.specss.fileStream('');
-      // console.log('before',JSON.stringify(specs, null, 2));
+      this.themeFile.write(body);
     }
   }
 

@@ -1,0 +1,5 @@
+btn:
+  types:
+    default__align-items: center
+    default__background-color: @spec(colors.primary.white)
+    primary__color: spec(colors.primary.white)
