@@ -1,3 +1,7 @@
-.rotor-gmail__btn{--myprefix-btn-default__font-family: Roboto;--myprefix-btn-default__align-items: center;--myprefix-btn-default__background-color: #3CA0F0;--myprefix-btn-default__box-shadow--focus: rgba(10, 120, 220, 1);--myprefix-btn-primary__color: #0A78DC}__color: #0A78DC;
+.rotor-gmail__btn {
+  --o-btn-default__font-family: Roboto;
+  --o-btn-default__align-items: center;
+  --o-btn-default__background-color: #3CA0F0;
+  --o-btn-default__box-shadow--focus: rgba(10, 120, 220, 1);
+  --o-btn-primary__color: #0A78DC;
 }
-

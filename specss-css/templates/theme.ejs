@@ -1,9 +1,7 @@
-
 <% for (let spec of specs) { -%>
 .<%- domain %>-<%- theme %>__<%- spec.section -%> {
 <% for (let property in spec.items) { -%>
   <%- cssVarsPrefix %>-<%- spec.section -%>-<%- property -%>: <%- spec.items[property] -%>;
 <% } -%>
 }
-
 <% } -%>

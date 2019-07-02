@@ -10,6 +10,6 @@ plugins:
     # - "@specss/postcss-autoprefixer"
 
 global:
-  cssVarsPrefix: "--myprefix"
+  cssVarsPrefix: "--o"
   specsFolder: "./ui"
   outputFolder: "./dist"
